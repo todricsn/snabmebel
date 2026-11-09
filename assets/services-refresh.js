@@ -42,28 +42,6 @@
     });
   }
 
-  const faqs = [...document.querySelectorAll('main details')];
-  const animations = new WeakMap();
-  function cancelDetails(details) {
-    (animations.get(details) || []).forEach(animation => animation.cancel());
-    animations.delete(details);
-  }
-  faqs.forEach(details => details.addEventListener('toggle', () => {
-    cancelDetails(details);
-    if (!details.open || motion.matches) return;
-    const running = [...details.children].filter(child => child.tagName !== 'SUMMARY' && typeof child.animate === 'function').map(child => {
-      const height = child.getBoundingClientRect().height;
-      return child.animate([
-        { height: '0px', opacity: 0, overflow: 'hidden' },
-        { height: `${height}px`, opacity: 1, overflow: 'hidden' }
-      ], { duration: 200, easing: 'cubic-bezier(.2,.65,.3,1)' });
-    });
-    animations.set(details, running);
-  }));
-  motion.addEventListener('change', () => {
-    if (motion.matches) faqs.forEach(cancelDetails);
-  });
-
   const request = document.getElementById('request');
   const heading = request?.querySelector('h2');
   if (!request || !heading) return;

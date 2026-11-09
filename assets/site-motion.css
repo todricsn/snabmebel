@@ -1,0 +1,103 @@
+/* The document remains visible without the head bootstrap or motion engine. */
+.site-intro {
+  display: none;
+}
+html.motion-intro .site-intro {
+  position: fixed;
+  z-index: 10000;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #f7f7f4;
+  color: #a48b25;
+  pointer-events: none;
+  animation: site-intro-safety 2.3s step-end forwards;
+}
+.site-intro-mark {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: clamp(250px, 35vw, 420px);
+  max-width: calc(100vw - 48px);
+  height: 128px;
+}
+.site-intro-outline,
+.site-intro-logo {
+  position: absolute;
+  inset: 0;
+  display: block;
+  margin: auto;
+  padding: 0;
+  border: 0;
+}
+.site-intro-outline {
+  width: 88px;
+  height: 100.571px;
+  overflow: visible;
+  fill: none;
+  stroke: #a48b25;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.site-intro-outline path {
+  fill: none;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+.site-intro-logo {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1978 / 427;
+  opacity: 0;
+  visibility: hidden;
+}
+.site-intro-logo image {
+  pointer-events: none;
+}
+/* No transform here: GSAP owns the upward exit independently of this guard. */
+@keyframes site-intro-safety {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* Short feedback belongs to the control itself, never its layout wrapper. */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .btn,
+  .site-action {
+    transition-property: background-color, color, transform;
+    transition-duration: .18s, .18s, .2s;
+    transition-timing-function: ease, ease, cubic-bezier(.22, 1, .36, 1);
+  }
+  body .btn:hover,
+  body .site-action:hover {
+    transform: translateY(-1px);
+  }
+  body .btn:active,
+  body .site-action:active {
+    transform: translateY(0);
+  }
+  body .btn:disabled,
+  body .site-action[aria-disabled="true"] {
+    transform: none;
+  }
+}
+@media (max-width: 450px) {
+  .site-intro-mark {
+    height: 112px;
+  }
+  .site-intro-outline {
+    width: 80px;
+    height: 91.429px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html.motion-intro .site-intro,
+  .site-intro {
+    display: none !important;
+    animation: none;
+  }
+}
