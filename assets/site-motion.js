@@ -1,12 +1,12 @@
 (() => {
-  const body = document.body, html = document.documentElement, g = window.gsap;
+  const body = document.body, html = document.documentElement, g = window.gsap, st = window.ScrollTrigger;
   if (!body || body.dataset.motionEngine) return;
-  body.dataset.motionEngine = 'gsap-v1';
+  body.dataset.motionEngine = 'gsap-scrolltrigger-v2';
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
   const clearProps = 'transform,opacity,visibility,willChange,transition,strokeDasharray,strokeDashoffset';
   const changed = new Set(), scenes = [], roots = new Map();
   const overlay = document.querySelector('.site-intro');
-  let observer, intro, heroScene, introActive = html.classList.contains('motion-intro');
+  let intro, heroScene, introActive = html.classList.contains('motion-intro');
   const skipEvents = ['wheel', 'touchstart', 'keydown', 'pointerdown'];
   function clear(nodes) {
     if (!nodes.length) return;
@@ -18,7 +18,7 @@
   }
   function finish(scene) {
     scene.done = true;
-    observer?.unobserve(scene.root);
+    scene.trigger?.kill();
     try { scene.timeline?.kill(); } catch {}
     scene.timeline = null;
     clear(scene.targets);
@@ -36,7 +36,6 @@
   }
   function skipIntro() { dismissIntro(true); }
   function stopAll(state) {
-    observer?.disconnect();
     scenes.forEach(finish);
     dismissIntro(true);
     html.classList.remove('motion-intro');
@@ -46,8 +45,9 @@
   }
   window.addEventListener('pageshow', event => { if (event.persisted) stopAll('restored'); });
   reduce.addEventListener('change', () => { if (reduce.matches) stopAll('reduced'); });
-  if (!g || reduce.matches) { stopAll(reduce.matches ? 'reduced' : 'fallback'); return; }
+  if (!g || !st || reduce.matches) { stopAll(reduce.matches ? 'reduced' : 'fallback'); return; }
   try {
+    g.registerPlugin(st);
     const main = document.querySelector('main');
     if (!main) { stopAll('fallback'); return; }
     const hero = main.querySelector('.hero,.service-hero,.page-intro');
@@ -78,17 +78,22 @@
     function reveal(scene) {
       if (scene.done || scene.timeline) return;
       if (reduce.matches || scene.root.contains(document.activeElement)) { finish(scene); return; }
+      // Late callbacks must never move content the visitor is already reading.
+      if (scene !== heroScene && scene.root.getBoundingClientRect().top < window.innerHeight - 40) { finish(scene); return; }
       const targets = scene.targets.filter(node => allowed(node) && node.getBoundingClientRect().bottom > 0);
       if (!targets.length) { finish(scene); return; }
       const headings = targets.filter(node => node.matches('h1'));
       const media = targets.filter(node => node.matches('img,.sample-plate'));
       const copy = targets.filter(node => !headings.includes(node) && !media.includes(node));
+      const coveredHero = scene === heroScene && introActive;
       targets.forEach(node => changed.add(node));
-      g.set(targets, { transition: 'none', willChange: 'transform,opacity' });
+      // Scroll reveals keep opacity untouched; only the loader may cover a fade.
+      g.set(targets, { transition: 'none', y: 10, force3D: false, ...(coveredHero ? { opacity: 0 } : {}) });
+      const end = { y: 0, duration: .5, force3D: false, ...(coveredHero ? { opacity: 1 } : {}) };
       const tl = scene.timeline = g.timeline({ paused: true, defaults: { ease: 'power3.out' }, onComplete: () => finish(scene) });
-      if (headings.length) tl.fromTo(headings, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .64, immediateRender: false }, 0);
-      if (copy.length) tl.fromTo(copy, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: .62, stagger: { amount: Math.min(.18, Math.max(0, copy.length - 1) * .06) }, immediateRender: false }, headings.length ? .08 : 0);
-      if (media.length) tl.fromTo(media, { opacity: 0, y: 24, scale: 1.025 }, { opacity: 1, y: 0, scale: 1, duration: .72, immediateRender: false }, headings.length ? .14 : .1);
+      if (headings.length) tl.to(headings, end, 0);
+      if (copy.length) tl.to(copy, { ...end, stagger: { amount: Math.min(.1, Math.max(0, copy.length - 1) * .03) } }, headings.length ? .04 : 0);
+      if (media.length) tl.to(media, end, .04);
       tl.play();
     }
     function finishWithin(node) {
@@ -108,19 +113,20 @@
       finishWithin(target);
     }, true);
     window.addEventListener('hashchange', () => { dismissIntro(true); finishWithin(document.getElementById(location.hash.slice(1))); });
-    if ('IntersectionObserver' in window) {
-      observer = new IntersectionObserver(entries => {
-        try {
-          entries.forEach(entry => {
-            const scene = roots.get(entry.target);
-            if (!scene || scene.done) return;
-            if (entry.boundingClientRect.bottom <= 0) finish(scene);
-            else if (entry.isIntersecting) { observer.unobserve(scene.root); reveal(scene); }
-          });
-        } catch { stopAll('fallback'); }
-      }, { rootMargin: '0px 0px 12% 0px', threshold: .01 });
-      scenes.forEach(scene => { if (scene !== heroScene) observer.observe(scene.root); });
-    } else scenes.forEach(scene => { if (scene !== heroScene) finish(scene); });
+    scenes.forEach(scene => {
+      if (scene === heroScene) return;
+      if (scene.root.getBoundingClientRect().top < window.innerHeight) { finish(scene); return; }
+      scene.trigger = st.create({
+        trigger: scene.root, start: 'top bottom+=80', once: true,
+        onEnter: () => { try { reveal(scene); } catch { stopAll('fallback'); } }
+      });
+      if (scene.done) scene.trigger.kill();
+    });
+    document.fonts?.ready.then(() => st.refresh());
+    window.addEventListener('load', () => st.refresh(), { once: true });
+    document.addEventListener('toggle', event => { if (event.target.matches('main details')) st.refresh(); }, true);
+    document.getElementById('catalog-filters')?.addEventListener('change', () => st.refresh());
+    document.getElementById('catalog-filters')?.addEventListener('reset', () => requestAnimationFrame(() => st.refresh()));
     if (location.hash) finishWithin(document.getElementById(location.hash.slice(1)));
     const showHero = heroScene && !heroScene.done && hero.getBoundingClientRect().bottom > 0 && window.scrollY < 4;
     if (!showHero && heroScene) finish(heroScene);
