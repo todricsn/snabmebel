@@ -1,0 +1,305 @@
+/* About page: typography and materials instead of invented factory photography. */
+body.about-page {
+  --company-space: 90px;
+  --company-copy: #4b5148;
+  --company-field: #edeee8;
+  --company-focus: #88701d;
+}
+body.about-page .company-hero {
+  padding: 54px 0 68px;
+}
+body.about-page .company-hero .crumbs {
+  margin-bottom: 35px;
+  font-size: 12px;
+  line-height: 1.6;
+}
+body.about-page .company-hero h1 {
+  max-width: 1100px;
+  margin: 0;
+  font-size: clamp(46px, 5vw, 68px);
+  font-weight: 450;
+  line-height: 1.06;
+  letter-spacing: -.05em;
+}
+body.about-page .company-hero h1 > span {
+  display: block;
+}
+body.about-page .company-hero-context {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 72px;
+  margin-top: 34px;
+}
+body.about-page .company-hero-context > p {
+  max-width: 740px;
+  margin: 0;
+  color: var(--company-copy);
+  font-size: 18px;
+  line-height: 1.7;
+}
+body.about-page .company-hero-context > .btn {
+  min-height: 54px;
+  margin: 0;
+  padding: 16px 27px;
+  white-space: nowrap;
+}
+body.about-page .page-content {
+  padding-bottom: var(--company-space);
+}
+
+/* The opening statement reads as one considered editorial spread. */
+body.about-page .company-purpose {
+  display: grid;
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+  align-items: start;
+  gap: 88px;
+  margin-bottom: var(--company-space);
+}
+body.about-page .company-purpose h2 {
+  max-width: 440px;
+  margin: 0;
+  font-size: 42px;
+  line-height: 1.14;
+}
+body.about-page .company-purpose > p {
+  max-width: 60ch;
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+/* Agreement has more visual weight than the shorter preparation note. */
+body.about-page .company-agreement-grid {
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, .7fr);
+  gap: 100px;
+  margin-bottom: var(--company-space);
+}
+body.about-page .company-agreement h2 {
+  max-width: 590px;
+  margin-bottom: 24px;
+  font-size: 38px;
+  line-height: 1.17;
+}
+body.about-page .company-agreement .detail-list {
+  max-width: 56ch;
+  margin-top: 26px;
+  padding-left: 20px;
+}
+body.about-page .company-agreement .detail-list li {
+  margin: 0 0 18px;
+  padding-left: 5px;
+  color: var(--company-copy);
+  font-size: 17px;
+  line-height: 1.7;
+}
+body.about-page .company-agreement .detail-list li::marker {
+  color: var(--company-focus);
+}
+body.about-page .company-preparation h2 {
+  max-width: 360px;
+  margin-bottom: 23px;
+  font-size: 30px;
+  line-height: 1.22;
+}
+body.about-page .company-preparation > p {
+  max-width: 37ch;
+  line-height: 1.75;
+}
+body.about-page .company-material-samples {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 32px;
+}
+body.about-page .company-material-samples img {
+  display: block;
+  width: 108px;
+  height: 86px;
+  min-width: 0;
+  object-fit: cover;
+  background: var(--company-field);
+}
+
+/* Conditions form one calm field; the factual status stays easy to read. */
+body.about-page .company-conditions {
+  display: grid;
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+  align-items: start;
+  gap: 80px;
+  margin-bottom: var(--company-space);
+  padding: 43px 48px;
+  background: var(--company-field);
+}
+body.about-page .company-conditions h2 {
+  margin: 0;
+  font-size: 34px;
+  line-height: 1.17;
+}
+body.about-page .company-conditions > p {
+  max-width: 64ch;
+  font-size: 17px;
+  line-height: 1.75;
+}
+body.about-page .page-content > .detail-section.company-evidence {
+  display: grid;
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+  align-items: start;
+  gap: 72px;
+  max-width: none;
+  margin-bottom: 42px;
+  padding: 43px 48px;
+  background: #252723;
+  color: #f7f7f4;
+}
+body.about-page .company-evidence h2 {
+  max-width: 440px;
+  margin: 0;
+  color: inherit;
+  font-size: 31px;
+  line-height: 1.22;
+}
+body.about-page .company-evidence > p {
+  max-width: 65ch;
+  color: #e1e5da;
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+/* Preserve the three destinations, with a clear primary route to the catalog. */
+body.about-page .company-related {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, .7fr);
+  align-items: stretch;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+body.about-page .company-related a {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  min-height: 104px;
+  max-width: none;
+  margin: 0;
+  padding: 24px 0;
+  color: #252723;
+  font-size: 24px;
+  font-weight: 450;
+  line-height: 1.3;
+  letter-spacing: -.025em;
+  text-decoration: none;
+}
+body.about-page .company-related a:first-child {
+  padding: 24px;
+  background: #edc943;
+}
+body.about-page .company-related a:nth-child(2) {
+  color: var(--company-copy);
+}
+body.about-page .company-related a:last-child {
+  text-decoration: underline;
+  text-underline-offset: 7px;
+  text-decoration-thickness: 1px;
+}
+body.about-page .company-related a:focus-visible {
+  outline: 2px solid var(--company-focus);
+  outline-offset: 5px;
+}
+body.about-page #request {
+  scroll-margin-top: 12px;
+}
+body.about-page #request .lead-form {
+  outline: 2px solid transparent;
+  outline-offset: 7px;
+}
+body.about-page #request.request-arrived .lead-form {
+  animation: company-request-arrival 1.8s ease-out both;
+}
+@keyframes company-request-arrival {
+  0%, 30% { outline-color: #a48b25; }
+  100% { outline-color: transparent; }
+}
+@media (hover: hover) {
+  body.about-page .company-related a:hover {
+    text-decoration: underline;
+    text-underline-offset: 7px;
+    text-decoration-thickness: 1px;
+  }
+  body.about-page .company-related a:first-child:hover {
+    background: #dfbb34;
+  }
+}
+
+@media (max-width: 1000px) {
+  body.about-page { --company-space: 72px; }
+  body.about-page .company-hero { padding: 43px 0 58px; }
+  body.about-page .company-hero-context { gap: 40px; }
+  body.about-page .company-hero-context > p { font-size: 17px; }
+  body.about-page .company-purpose { gap: 48px; }
+  body.about-page .company-purpose h2 { font-size: 36px; }
+  body.about-page .company-purpose > p { font-size: 17px; }
+  body.about-page .company-agreement-grid { gap: 48px; }
+  body.about-page .company-agreement h2 { font-size: 34px; }
+  body.about-page .company-preparation h2 { font-size: 28px; }
+  body.about-page .company-conditions { gap: 44px; padding: 35px 36px; }
+  body.about-page .company-conditions h2 { font-size: 31px; }
+  body.about-page .page-content > .detail-section.company-evidence { gap: 44px; padding: 35px 36px; }
+  body.about-page .company-evidence h2 { font-size: 28px; }
+  body.about-page .company-related { gap: 24px; }
+  body.about-page .company-related a { font-size: 21px; }
+}
+
+@media (max-width: 720px) {
+  body.about-page { --company-space: 56px; }
+  body.about-page .company-hero { padding: 30px 0 46px; }
+  body.about-page .company-hero .crumbs { margin-bottom: 27px; font-size: 11px; gap: 7px; }
+  body.about-page .company-hero h1 {
+    width: 100%;
+    max-width: none;
+    font-size: clamp(25px, 7.2vw, 38px);
+    line-height: 1.13;
+    letter-spacing: -.045em;
+  }
+  body.about-page .company-hero-context { display: block; margin-top: 25px; }
+  body.about-page .company-hero-context > p { max-width: 600px; font-size: 16px; line-height: 1.65; }
+  body.about-page .company-hero-context > .btn { margin-top: 24px; min-height: 52px; padding: 15px 25px; }
+  body.about-page .company-purpose { grid-template-columns: minmax(0, 1fr); gap: 23px; }
+  body.about-page .company-purpose h2 { max-width: 470px; font-size: 32px; line-height: 1.17; }
+  body.about-page .company-purpose > p { max-width: 65ch; font-size: 16px; line-height: 1.7; }
+  body.about-page .company-agreement-grid { grid-template-columns: minmax(0, 1fr); gap: 35px; }
+  body.about-page .company-agreement h2 { max-width: 540px; margin-bottom: 22px; font-size: 32px; }
+  body.about-page .company-agreement .detail-list { max-width: none; margin-top: 23px; padding-left: 19px; }
+  body.about-page .company-agreement .detail-list li { font-size: 16px; line-height: 1.65; margin-bottom: 16px; }
+  body.about-page .company-material-samples { margin-top: 27px; gap: 10px; }
+  body.about-page .company-material-samples img { width: 90px; height: 72px; }
+  body.about-page .company-preparation h2 { max-width: 480px; margin-bottom: 19px; font-size: 28px; }
+  body.about-page .company-preparation > p { max-width: 65ch; line-height: 1.7; }
+  body.about-page .company-conditions { display: block; padding: 29px 24px; }
+  body.about-page .company-conditions h2 { margin-bottom: 21px; font-size: 30px; }
+  body.about-page .company-conditions > p { max-width: none; font-size: 16px; line-height: 1.7; }
+  body.about-page .page-content > .detail-section.company-evidence { display: block; margin-bottom: 27px; padding: 29px 24px; }
+  body.about-page .company-evidence h2 { max-width: 470px; margin-bottom: 22px; font-size: 28px; }
+  body.about-page .company-evidence > p { max-width: none; font-size: 16px; line-height: 1.7; }
+  body.about-page .company-related { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  body.about-page .company-related a { min-height: 60px; padding: 12px 0; font-size: 23px; }
+  body.about-page .company-related a:first-child { min-height: 90px; padding: 23px 24px; }
+  body.about-page #request .lead-form { outline-offset: 5px; }
+}
+@media (max-width: 450px) {
+  body.about-page .company-hero h1 { font-size: clamp(25px, 7.2vw, 32px); }
+  body.about-page .company-hero-context > .btn { width: 100%; justify-content: center; }
+  body.about-page .company-purpose h2,
+  body.about-page .company-agreement h2 { font-size: 30px; }
+  body.about-page .company-conditions,
+  body.about-page .page-content > .detail-section.company-evidence { padding: 27px 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.about-page #request.request-arrived .lead-form {
+    animation: none;
+    outline-color: var(--company-focus);
+  }
+}
+
+/* Keep the existing purpose heading on two lines in the narrow split layout. */
+@media(min-width:721px) and (max-width:1000px){body.about-page .company-purpose h2{font-size:32px}}

@@ -1,0 +1,592 @@
+/* Service pages: existing content, in its original reading order. */
+body.service-page {
+  --service-space: 96px;
+  --service-copy: #4b5148;
+  --service-field: #edeee8;
+  --service-focus: #88701d;
+  --service-photo-position: 50% 50%;
+}
+
+/* The photograph and the offer share the first screen. */
+body.service-page .service-hero {
+  display: grid;
+  grid-template-columns: minmax(0, .78fr) minmax(0, 1.22fr);
+  align-items: stretch;
+  gap: 48px;
+  width: min(1280px, calc(100% - 80px));
+  margin: 38px auto var(--service-space);
+}
+body.service-page .service-hero > .wrap {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+}
+body.service-page .service-hero .page-intro {
+  align-self: center;
+  padding: 20px 0 34px;
+}
+body.service-page .service-hero .crumbs {
+  margin-bottom: 36px;
+  font-size: 12px;
+  line-height: 1.55;
+  gap: 8px;
+}
+body.service-page .service-hero h1 {
+  max-width: 490px;
+  margin: 0;
+  font-size: clamp(40px, 4.2vw, 58px);
+  font-weight: 450;
+  line-height: 1.06;
+  letter-spacing: -.05em;
+  text-wrap: balance;
+}
+body.service-page .service-hero .page-intro > p {
+  max-width: 460px;
+  margin-top: 28px;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--service-copy);
+}
+body.service-page .service-hero .page-intro > .btn {
+  margin-top: 30px;
+  min-height: 54px;
+  padding: 16px 26px;
+}
+body.service-page .service-hero .service-image {
+  min-height: 540px;
+  overflow: hidden;
+  background: var(--service-field);
+}
+body.service-page .service-photo-open {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: zoom-in;
+}
+body.service-page .service-photo-open:disabled {
+  opacity: 1;
+  cursor: default;
+}
+body.service-page .service-photo-open:focus-visible {
+  outline: 3px solid #edc943;
+  outline-offset: -6px;
+}
+body.service-page .service-hero .service-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  aspect-ratio: auto;
+  object-fit: cover;
+  object-position: var(--service-photo-position);
+}
+body.service-changing { --service-photo-position: 50% 55%; }
+body.service-gym { --service-photo-position: 43% 55%; }
+body.service-island { --service-photo-position: 52% 56%; }
+body.service-reception { --service-photo-position: 59% 54%; }
+
+/* Complete counters need their full width; room views remain immersive. */
+body.service-island .service-hero .service-image,
+body.service-reception .service-hero .service-image {
+  align-self: center;
+  min-height: 0;
+}
+body.service-island .service-hero .service-photo-open,
+body.service-reception .service-hero .service-photo-open {
+  min-height: 0;
+  height: auto;
+}
+body.service-island .service-hero .service-image img,
+body.service-reception .service-hero .service-image img {
+  min-height: 0;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+}
+
+/* An editorial introduction, followed by the practical scope. */
+body.service-page .page-content {
+  padding-bottom: var(--service-space);
+}
+body.service-page .service-overview {
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 88px;
+  margin-bottom: var(--service-space);
+}
+body.service-page .service-description h2 {
+  max-width: 610px;
+  margin-bottom: 28px;
+  font-size: clamp(34px, 3.2vw, 44px);
+  line-height: 1.13;
+}
+body.service-page .service-description > p {
+  max-width: 56ch;
+  font-size: 18px;
+  line-height: 1.75;
+}
+body.service-page .service-scope h2 {
+  margin-bottom: 21px;
+  font-size: 27px;
+  line-height: 1.22;
+  letter-spacing: -.035em;
+}
+body.service-page .service-scope .detail-list,
+body.service-page .service-brief .detail-list {
+  margin-top: 24px;
+  padding-left: 19px;
+}
+body.service-page .service-scope .detail-list li,
+body.service-page .service-brief .detail-list li {
+  margin: 0 0 18px;
+  padding-left: 5px;
+  font-size: 16px;
+  line-height: 1.7;
+}
+body.service-page .service-scope .detail-list li::marker,
+body.service-page .service-brief .detail-list li::marker {
+  color: var(--service-focus);
+}
+
+/* One quiet field holds everything needed to start the conversation. */
+body.service-page .service-brief {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: 80px;
+  row-gap: 21px;
+  align-items: start;
+  margin-bottom: var(--service-space);
+  padding: 48px 54px;
+  background: var(--service-field);
+}
+body.service-page .service-brief h2 {
+  grid-column: 1;
+  max-width: 450px;
+  margin: 0;
+  font-size: 36px;
+  line-height: 1.16;
+}
+body.service-page .service-brief > p {
+  grid-column: 1;
+  max-width: 46ch;
+}
+body.service-page .service-brief .detail-list {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  margin: 0;
+}
+
+/* Read the two stages from top to bottom, without ornamental step marks. */
+body.service-page .service-process {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 38px;
+  margin-bottom: var(--service-space);
+}
+body.service-page .service-process > .detail-section {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  align-items: start;
+  gap: 88px;
+}
+body.service-page .service-process h2 {
+  max-width: 450px;
+  margin: 0;
+  font-size: 31px;
+  line-height: 1.22;
+}
+body.service-page .service-process p {
+  max-width: 65ch;
+  padding-top: 3px;
+}
+
+/* Large native disclosures keep every answer available without scripts. */
+body.service-page .detail-faq {
+  display: grid;
+  grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr);
+  column-gap: 72px;
+  row-gap: 8px;
+  margin: 0 0 var(--service-space);
+}
+body.service-page .detail-faq > h2 {
+  grid-column: 1;
+  grid-row: 1 / span 3;
+  max-width: 380px;
+  margin: 18px 0 0;
+}
+body.service-page .detail-faq details {
+  grid-column: 2;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  transition: background-color .18s ease;
+}
+body.service-page .detail-faq details[open] {
+  background: var(--service-field);
+}
+body.service-page .detail-faq summary {
+  position: relative;
+  display: block;
+  max-width: none;
+  min-height: 72px;
+  padding: 23px 60px 23px 24px;
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: -.02em;
+  list-style: none;
+  cursor: pointer;
+}
+body.service-page .detail-faq summary::-webkit-details-marker {
+  display: none;
+}
+body.service-page .detail-faq summary::marker {
+  content: '';
+}
+body.service-page .detail-faq summary::before,
+body.service-page .detail-faq summary::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 25px;
+  width: 14px;
+  height: 1.5px;
+  background: currentColor;
+  transform: translateY(-50%);
+}
+body.service-page .detail-faq summary::after {
+  transform: translateY(-50%) rotate(90deg);
+  transition: transform .18s ease;
+}
+body.service-page .detail-faq details[open] summary::after {
+  transform: translateY(-50%);
+}
+body.service-page .detail-faq summary:focus-visible {
+  outline: 2px solid var(--service-focus);
+  outline-offset: -2px;
+}
+body.service-page .detail-faq details > p {
+  max-width: none;
+  margin: 0;
+  padding: 0 60px 25px 24px;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* Existing related destinations gain visual recognition. */
+body.service-page .detail-related {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: start;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+body.service-page .detail-related a {
+  display: block;
+  min-width: 0;
+  min-height: 0;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1.4;
+  text-decoration: none;
+}
+body.service-page .related-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+  background: var(--service-field);
+  transition: filter .2s ease;
+}
+body.service-page .detail-related a > span {
+  display: block;
+  padding-top: 16px;
+}
+body.service-page .detail-related a:focus-visible {
+  outline: 2px solid var(--service-focus);
+  outline-offset: 6px;
+}
+
+/* The existing form receives a brief, calm arrival cue. */
+body.service-page #request {
+  scroll-margin-top: 12px;
+}
+body.service-page #request .lead-form {
+  outline: 2px solid transparent;
+  outline-offset: 7px;
+}
+body.service-page #request.request-arrived .lead-form {
+  animation: service-request-arrival 1.8s ease-out both;
+}
+@keyframes service-request-arrival {
+  0%, 30% { outline-color: #a48b25; }
+  100% { outline-color: transparent; }
+}
+
+/* Native dialog handles focus, Escape and inert background content. */
+body.service-page dialog.service-lightbox {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 32px;
+  border: 0;
+  border-radius: 0;
+  overflow: hidden;
+  background: transparent;
+  color: #f7f7f4;
+}
+body.service-page dialog.service-lightbox[open] {
+  display: grid;
+  place-items: center;
+}
+body.service-page dialog.service-lightbox::backdrop {
+  background: rgb(13 17 13 / .88);
+}
+body.service-page .service-lightbox-content {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: fit-content;
+  max-width: 100%;
+  max-height: 100%;
+  background: #181c17;
+}
+body.service-page dialog.service-lightbox img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: min(1440px, calc(100vw - 64px));
+  max-height: calc(100dvh - 64px);
+  object-fit: contain;
+}
+body.service-page .service-lightbox-close {
+  position: absolute;
+  z-index: 1;
+  top: 14px;
+  right: 14px;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #f7f7f4;
+  color: #252723;
+  cursor: pointer;
+}
+body.service-page .service-lightbox-close::before,
+body.service-page .service-lightbox-close::after {
+  content: '';
+  position: absolute;
+  width: 19px;
+  height: 1.5px;
+  background: currentColor;
+  transform: rotate(45deg);
+}
+body.service-page .service-lightbox-close::after {
+  transform: rotate(-45deg);
+}
+body.service-page .service-lightbox-close:focus-visible {
+  outline: 3px solid #edc943;
+  outline-offset: 4px;
+}
+
+@media (hover: hover) {
+  body.service-page .detail-faq details:not([open]):hover {
+    background: #f0f1eb;
+  }
+  body.service-page .detail-related a:hover .related-photo {
+    filter: brightness(.94);
+  }
+  body.service-page .detail-related a:hover > span {
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    text-decoration-thickness: 1px;
+  }
+  body.service-page .service-lightbox-close:hover {
+    background: #edc943;
+  }
+}
+
+@media (max-width: 1000px) {
+  body.service-page { --service-space: 76px; }
+  body.service-page .service-hero {
+    grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+    gap: 32px;
+    width: calc(100% - 48px);
+    margin-top: 28px;
+  }
+  body.service-page .service-hero .page-intro { padding: 15px 0 24px; }
+  body.service-page .service-hero .crumbs { margin-bottom: 28px; }
+  body.service-page .service-hero h1 { font-size: clamp(38px, 4.8vw, 48px); }
+  body.service-page .service-hero .page-intro > p {
+    font-size: 16px;
+    margin-top: 24px;
+  }
+  body.service-page .service-hero .service-image { min-height: 500px; }
+  body.service-page .service-overview { gap: 48px; }
+  body.service-page .service-description h2 { font-size: 37px; }
+  body.service-page .service-description > p { font-size: 17px; }
+  body.service-page .service-scope h2 { font-size: 25px; }
+  body.service-page .service-brief { gap: 22px 44px; padding: 38px 36px; }
+  body.service-page .service-brief h2 { font-size: 32px; }
+  body.service-page .service-process > .detail-section { gap: 48px; }
+  body.service-page .service-process h2 { font-size: 28px; }
+  body.service-page .detail-faq { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); column-gap: 36px; }
+  body.service-page .detail-faq > h2 { font-size: 34px; }
+  body.service-page .detail-faq summary { font-size: 18px; }
+  body.service-page .detail-related { gap: 20px; }
+  body.service-page .detail-related a { font-size: 16px; }
+}
+
+@media (max-width: 720px) {
+  body.service-page { --service-space: 58px; }
+  body.service-page .service-hero {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 30px;
+    width: calc(100% - 36px);
+    margin-top: 25px;
+  }
+  body.service-page .service-hero .page-intro { padding: 0; }
+  body.service-page .service-hero .crumbs { margin-bottom: 25px; }
+  body.service-page .service-hero h1 {
+    max-width: 610px;
+    font-size: clamp(36px, 7.2vw, 46px);
+    line-height: 1.08;
+  }
+  body.service-page .service-hero .page-intro > p {
+    max-width: 580px;
+    margin-top: 22px;
+    line-height: 1.65;
+  }
+  body.service-page .service-hero .page-intro > .btn {
+    min-height: 52px;
+    margin-top: 24px;
+    padding: 15px 24px;
+  }
+  body.service-page .service-hero .service-image { min-height: 0; }
+  body.service-page .service-photo-open { height: auto; min-height: 0; }
+  body.service-page .service-hero .service-image img {
+    min-height: 0;
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+  body.service-changing { --service-photo-position: 50% 56%; }
+  body.service-gym { --service-photo-position: 43% 45%; }
+  body.service-island { --service-photo-position: 51% 57%; }
+  body.service-reception { --service-photo-position: 57% 56%; }
+  body.service-island .service-hero .service-image img,
+  body.service-reception .service-hero .service-image img { aspect-ratio: 16 / 9; }
+  body.service-page .service-overview {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 35px;
+  }
+  body.service-page .service-description h2 {
+    max-width: 600px;
+    margin-bottom: 23px;
+    font-size: 32px;
+    line-height: 1.17;
+  }
+  body.service-page .service-description > p { font-size: 16px; line-height: 1.7; }
+  body.service-page .service-scope h2 { margin-bottom: 18px; font-size: 26px; }
+  body.service-page .service-scope .detail-list,
+  body.service-page .service-brief .detail-list { margin-top: 20px; }
+  body.service-page .service-scope .detail-list li,
+  body.service-page .service-brief .detail-list li { margin-bottom: 15px; line-height: 1.65; }
+  body.service-page .service-brief {
+    display: block;
+    padding: 30px 26px;
+  }
+  body.service-page .service-brief h2 { margin-bottom: 21px; font-size: 30px; }
+  body.service-page .service-brief > p { max-width: 100%; }
+  body.service-page .service-brief .detail-list { max-width: none; margin-top: 26px; }
+  body.service-page .service-process { gap: 34px; }
+  body.service-page .service-process > .detail-section {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+  body.service-page .service-process h2 { max-width: 500px; font-size: 28px; }
+  body.service-page .service-process p { padding: 0; }
+  body.service-page .detail-faq { display: block; }
+  body.service-page .detail-faq > h2 { max-width: 480px; margin: 0 0 26px; font-size: 32px; }
+  body.service-page .detail-faq details { margin-bottom: 8px; }
+  body.service-page .detail-faq summary {
+    min-height: 68px;
+    padding: 20px 50px 20px 18px;
+    font-size: 18px;
+  }
+  body.service-page .detail-faq summary::before,
+  body.service-page .detail-faq summary::after { right: 19px; }
+  body.service-page .detail-faq details > p { padding: 0 42px 23px 18px; line-height: 1.65; }
+  body.service-page .detail-related {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 30px 20px;
+  }
+  body.service-page .detail-related a { font-size: 16px; line-height: 1.4; }
+  body.service-page .detail-related a > span { padding-top: 13px; }
+  body.service-page #request { scroll-margin-top: 12px; }
+  body.service-page #request .lead-form { outline-offset: 5px; }
+  body.service-page dialog.service-lightbox {
+    padding: 12px;
+  }
+  body.service-page dialog.service-lightbox img {
+    max-width: calc(100vw - 24px);
+    max-height: calc(100dvh - 24px);
+  }
+  body.service-page .service-lightbox-close { top: 9px; right: 9px; width: 44px; height: 44px; }
+}
+
+@media (max-width: 450px) {
+  body.service-page .service-hero { gap: 27px; }
+  body.service-page .service-hero h1 { font-size: 36px; }
+  body.service-page .service-hero .crumbs { font-size: 11px; gap: 6px; }
+  body.service-page .service-hero .page-intro > .btn { width: 100%; justify-content: center; }
+  body.service-page .service-description h2,
+  body.service-page .detail-faq > h2 { font-size: 30px; }
+  body.service-page .service-brief { padding: 27px 22px; }
+  body.service-page .service-brief h2 { font-size: 28px; }
+  body.service-page .service-scope h2,
+  body.service-page .service-process h2 { font-size: 26px; }
+  body.service-page .detail-related { gap: 26px 16px; }
+  body.service-page .detail-related a { font-size: 15px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.service-page .detail-faq details,
+  body.service-page .detail-faq summary::after,
+  body.service-page .related-photo { transition: none; }
+  body.service-page #request.request-arrived .lead-form {
+    animation: none;
+    outline-color: var(--service-focus);
+  }
+}
+
+/* Keep the furniture visible when the split hero narrows on tablets. */
+@media (min-width:721px) and (max-width:1000px) {
+ body:is(.service-changing,.service-gym) .service-hero .service-image { align-self:center;min-height:0; }
+ body:is(.service-changing,.service-gym) .service-photo-open { min-height:0;height:auto; }
+ body:is(.service-changing,.service-gym) .service-hero .service-image img { min-height:0;height:auto;aspect-ratio:4/3; }
+}

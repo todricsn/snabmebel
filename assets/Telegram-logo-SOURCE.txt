@@ -1,0 +1,7 @@
+Official Telegram logo, original blue circle and white plane.
+Source page: https://telegram.org/tour/screenshots
+Official download: https://telegram.org/file/464001088/1/bI7AJLo7oX4.287931.zip/374fe3b0a59dc60005
+Original filename in archive: Logo.svg
+Downloaded 2026-11-09.
+Telegram permits use of these logos in illustrations and forward-to-Telegram buttons; do not imply official representation.
+SVG has an unused xlink namespace declaration but no href, external resource, script or event handler.
