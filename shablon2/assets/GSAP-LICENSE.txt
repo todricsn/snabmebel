@@ -1,0 +1,9 @@
+GSAP 3.15.1
+Copyright (c) 2008-2026, GreenSock. All rights reserved.
+
+Standard 'no charge' license: https://gsap.com/standard-license.
+
+Official package: https://registry.npmjs.org/gsap/-/gsap-3.15.1.tgz
+Package integrity: sha512-63yjWRFWj3QRP1UOuD8kcidCcy3nxb1mMRpwHr/xJRvPfm9GtWOXFAYUiL0ro1fgPq2nY53LR+98pAgy9BumBg==
+
+The original copyright and license headers in gsap.min.js and ScrollTrigger.min.js are retained.

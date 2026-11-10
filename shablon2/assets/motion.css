@@ -1,0 +1,13 @@
+:root{--header-height:185px;--color-header-glass:rgba(248,249,250,.96);--color-header-shadow:rgba(22,45,61,.08);--ease-refined:cubic-bezier(.22,1,.36,1)}
+html{scroll-padding-top:calc(var(--header-height) + 24px)}
+header{position:sticky;top:0;z-index:300;background:var(--color-header-glass);backdrop-filter:blur(16px);isolation:isolate}
+header.is-scrolled{box-shadow:0 8px 24px var(--color-header-shadow)}
+.scroll-progress{position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--color-green);transform:scaleX(0);transform-origin:left;pointer-events:none}
+.card{transition:transform .5s var(--ease-refined)}
+.button{transition:background-color .22s,transform .35s var(--ease-refined)}
+.button:active{transform:translateY(1px)}
+.utility a,.telegram,footer a{transition:color .2s}
+@media(hover:hover) and (pointer:fine){.card:hover{transform:translateY(-5px)}.button:hover{transform:translateY(-2px)}}
+@media(prefers-reduced-motion:reduce){.card,.button,.utility a,.telegram,footer a{transition:none}.card:hover,.button:hover,.button:active{transform:none}.scroll-progress{display:none}}
+
+.header-sentinel{display:block;height:1px;margin-bottom:-1px;pointer-events:none}
