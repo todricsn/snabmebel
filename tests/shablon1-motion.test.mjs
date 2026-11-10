@@ -9,7 +9,7 @@ function fixture(reduced=false,supported=true){
  let observer;
  class Observer{constructor(callback,options){this.callback=callback;this.options=options;this.observed=new Set();this.removed=[];observer=this}observe(target){this.observed.add(target)}unobserve(target){this.observed.delete(target);this.removed.push(target)}disconnect(){this.observed.clear();this.disconnected=true}fire(target){if(this.observed.has(target))this.callback([{target,isIntersecting:true}])}}
  const window={matchMedia:()=>media};if(supported)window.IntersectionObserver=Observer;
- const document={documentElement:html,querySelectorAll(selector){if(selector.startsWith('section h1'))return[heading,first,second];if(selector.startsWith('.application-grid,'))return[{children:[first,second]}];return[first,second]}};
+ const document={documentElement:html,querySelectorAll(selector){if(selector.startsWith('section h1'))return[heading,first,second];if(selector.includes('.application-grid,.model-grid,'))return[{children:[first,second]}];return[first,second]}};
  runInNewContext(code,{window,document,IntersectionObserver:Observer});
  return{heading,first,second,html,media,observer};
 }

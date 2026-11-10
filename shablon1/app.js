@@ -1,3 +1,4 @@
+import './quote-quiz.js';
 import './motion.js';
 import {TYPES,COLORS,PRESETS,normalize,selection,layoutOptions,specification,renderLocker} from './configurator.mjs';
 
