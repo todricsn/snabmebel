@@ -84,10 +84,35 @@ for(const id of ['bench','quantity','material','lock']) document.getElementById(
   render();
 });
 document.querySelector('#custom-color')?.addEventListener('input',event=>{state={...state,customHex:event.target.value};render();});
-document.querySelectorAll('[data-model]').forEach(link=>link.addEventListener('click',()=>{
-  state=selection({...state,...PRESETS[Number(link.dataset.model)],type:PRESETS[Number(link.dataset.model)].type||'standard',mode:'layout',bench:false});
+const modelDialog=document.querySelector('#model-request-dialog');
+document.querySelectorAll('[data-model]').forEach(link=>link.addEventListener('click',event=>{
+  const preset=PRESETS[Number(link.dataset.model)];
+  const selected=selection({...state,...preset,type:preset.type||'standard',mode:'layout',bench:false});
+  if(modelDialog&&link.classList.contains('model-action')){
+    event.preventDefault();
+    const card=link.closest('.model-card');
+    modelDialog.querySelector('#dialog-model-name').textContent=card.querySelector('h3').textContent;
+    modelDialog.querySelector('#dialog-model-layout').textContent=layoutLabel(selected)+', '+places(selected.places);
+    const image=modelDialog.querySelector('#dialog-model-image');
+    image.src=card.querySelector('img').src;
+    image.alt='Эскиз: '+card.querySelector('h3').textContent;
+    document.documentElement.classList.add('dialog-open');
+    modelDialog.showModal();
+    return;
+  }
+  state=selected;
   render();
 }));
+if(modelDialog){
+  modelDialog.querySelector('[data-close-dialog]').addEventListener('click',()=>modelDialog.close());
+  modelDialog.querySelector('form').addEventListener('submit',event=>event.preventDefault());
+  modelDialog.addEventListener('close',()=>document.documentElement.classList.remove('dialog-open'));
+  modelDialog.addEventListener('click',event=>{
+    if(event.target!==modelDialog)return;
+    const rect=modelDialog.getBoundingClientRect();
+    if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)modelDialog.close();
+  });
+}
 document.querySelector('#quote-configuration')?.addEventListener('click',()=>{
   includeConfiguration=true;
   direction.value='Шкафчики для раздевалок';

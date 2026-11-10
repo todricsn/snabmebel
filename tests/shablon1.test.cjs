@@ -22,5 +22,7 @@ for(const[route,html]of Object.entries(pages)){
   if(attribute==='href'&&url.hash){const target=fs.readFileSync(file,'utf8');assert.ok(target.includes('id="'+decodeURIComponent(url.hash.slice(1))+'"'),'Broken anchor '+raw);}
  }
 }
+assert.ok(pages['catalog/'].includes('id="model-request-dialog"'));
+assert.ok(pages['catalog/'].includes('aria-haspopup="dialog"'));
 assert.ok(fs.readFileSync(path.join(root,'app.js'),'utf8').includes("form.addEventListener('submit',event=>event.preventDefault())"));
 console.log('PASS: all six shablon1 pages, project-prefixed links, assets, anchors, inert enquiry buttons and contact icons.');

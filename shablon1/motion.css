@@ -13,3 +13,7 @@
 .button:active{transform:scale(.98);opacity:1}
 @media(hover:hover) and (pointer:fine){.motion-card:hover{--hover-y:-3px}.motion-card:hover::after{opacity:.25}.button:hover::before{opacity:.08}.button-secondary:hover::before{opacity:.04}}
 @media(prefers-reduced-motion:reduce){[data-reveal],.motion-card,.button,.button:active{transform:none!important;opacity:1!important;transition:none!important}.motion-card::after,.button::before{transition:none!important}}
+.model-request-dialog[open]{animation:dialog-enter .5s var(--motion-ease)}.model-request-dialog[open]::backdrop{animation:dialog-backdrop .25s var(--motion-ease)}
+@keyframes dialog-enter{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes dialog-backdrop{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.model-request-dialog[open],.model-request-dialog[open]::backdrop{animation:none!important}}
