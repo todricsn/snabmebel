@@ -1,0 +1,15 @@
+:root{--motion-ease:cubic-bezier(0.22,1,0.36,1)}
+[data-reveal],.motion-card{transform:translateY(calc(var(--reveal-y,0px) + var(--hover-y,0px)))}
+[data-reveal]{opacity:1;transition:transform .6s var(--motion-ease),opacity .6s var(--motion-ease);transition-delay:var(--reveal-delay,0s)}
+.motion-enabled [data-reveal]:not(.is-revealed){--reveal-y:16px;opacity:0}
+.motion-enabled [data-reveal]:focus-within{--reveal-y:0px;opacity:1;transition:none}
+.motion-card{position:relative;transition:transform .25s var(--motion-ease),opacity .25s var(--motion-ease)}
+.motion-enabled .motion-card[data-reveal]:not(.reveal-complete){transition-duration:.6s;transition-delay:var(--reveal-delay,0s)}
+.motion-card::after{content:'';position:absolute;inset:0;border:1px solid var(--muted);border-radius:inherit;opacity:0;pointer-events:none;transition:opacity .25s var(--motion-ease)}
+.button{position:relative;isolation:isolate;transition:transform .25s var(--motion-ease),opacity .25s var(--motion-ease)}
+.button::before{content:'';position:absolute;inset:0;z-index:-1;background:var(--ink);border-radius:inherit;opacity:0;pointer-events:none;transition:opacity .25s var(--motion-ease)}
+.button:hover{background:var(--accent);color:var(--ink)}
+.button-secondary:hover{background:var(--paper)}
+.button:active{transform:scale(.98);opacity:1}
+@media(hover:hover) and (pointer:fine){.motion-card:hover{--hover-y:-3px}.motion-card:hover::after{opacity:.25}.button:hover::before{opacity:.08}.button-secondary:hover::before{opacity:.04}}
+@media(prefers-reduced-motion:reduce){[data-reveal],.motion-card,.button,.button:active{transform:none!important;opacity:1!important;transition:none!important}.motion-card::after,.button::before{transition:none!important}}

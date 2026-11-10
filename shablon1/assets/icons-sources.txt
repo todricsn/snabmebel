@@ -1,0 +1,5 @@
+Telegram: Simple Icons, CC0-1.0
+https://github.com/simple-icons/simple-icons/blob/develop/icons/telegram.svg
+https://github.com/simple-icons/simple-icons/blob/develop/LICENSE.md
+Phone: Lucide, ISC license included in lucide-license.txt
+https://github.com/lucide-icons/lucide/blob/main/icons/phone.svg
