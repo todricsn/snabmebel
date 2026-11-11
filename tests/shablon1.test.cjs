@@ -3,7 +3,7 @@ const fs=require('node:fs');
 const path=require('node:path');
 const root=path.join(__dirname,'../shablon1');
 const base='/snabmebel/shablon1/';
-const routes=['','catalog/','osnashchenie-razdevalok/','mebel-dlya-sportzalov/','torgovye-ostrovki/','stoyki-resepshen/'];
+const routes=['','catalog/','osnashchenie-razdevalok/','mebel-dlya-sportzalov/','torgovye-ostrovki/','stoyki-resepshen/','works/','production/','contacts/'];
 const pages=Object.fromEntries(routes.map(route=>[route,fs.readFileSync(path.join(root,route,'index.html'),'utf8')]));
 for(const[route,html]of Object.entries(pages)){
  const pageURL='https://todricsn.github.io'+base+route;
@@ -26,3 +26,6 @@ assert.ok(pages['catalog/'].includes('id="model-request-dialog"'));
 assert.ok(pages['catalog/'].includes('aria-haspopup="dialog"'));
 assert.ok(fs.readFileSync(path.join(root,'app.js'),'utf8').includes("form.addEventListener('submit',event=>event.preventDefault())"));
 console.log('PASS: all six shablon1 pages, project-prefixed links, assets, anchors, inert enquiry buttons and contact icons.');
+
+for(const html of Object.values(pages)){const header=html.match(/<header[\s\S]*?<\/header>/)[0];for(const route of ["works/","production/","contacts/"])assert.ok(header.includes(base+route));assert.ok(!/>Материалы<|>Комплектация</.test(header));}
+assert.ok(pages[""].includes('id="materials"'));assert.ok(pages[""].includes('id="equipment"'));
