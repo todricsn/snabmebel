@@ -135,3 +135,14 @@ document.querySelectorAll('.mobile-nav,.services-nav').forEach(menu=>{
   document.addEventListener('click',event=>{if(menu.open&&!menu.contains(event.target))menu.open=false;});
 });
 render();
+
+const enquiry = document.querySelector('#enquiry');
+if (enquiry) {
+  enquiry.setAttribute('aria-labelledby','enquiry-title');
+  document.querySelectorAll('[data-popup]').forEach(button => button.addEventListener('click', () => {
+    enquiry.querySelector('h2').textContent = button.dataset.popup;
+    enquiry.showModal();
+  }));
+  enquiry.querySelector('.dialog-close').onclick = () => enquiry.close();
+  enquiry.querySelector('form').onsubmit = event => event.preventDefault();
+}
