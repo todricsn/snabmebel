@@ -1,0 +1,13 @@
+<!doctype html><html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Пример 3D-модели раздевалки</title><style>
+*{box-sizing:border-box}body{margin:0;background:#f4f3ef;color:#242921;font:16px system-ui}main{max-width:800px;margin:auto;padding:24px}h1{font-size:clamp(24px,5vw,40px)}.viewport{height:min(52vh,420px);display:grid;place-items:center;overflow:hidden}.room,.box{position:relative;transform-style:preserve-3d}.room{width:0;height:0}.box,.face{position:absolute}.face{border:1px solid #726f65;backface-visibility:hidden}.door:after{content:"";position:absolute;right:14%;top:46%;width:2px;height:10%;background:#4d4b41}label{display:grid;gap:14px}input{width:100%;accent-color:#525746}
+</style><main><h1>Пример 3D-модели раздевалки</h1><p>Два ряда шкафчиков и скамья в центральном проходе.</p><div class="viewport" aria-hidden="true"><div class="room"></div></div><label>Повернуть модель<input type="range" min="-180" max="180" value="-32"></label></main><script>
+const room=document.querySelector('.room'),angle=document.querySelector('input');
+function box(x,y,z,w,h,d,color,door=false){
+ const block=document.createElement('div');block.className='box';block.style.transform='translate3d('+x+'px,'+y+'px,'+z+'px)';room.append(block);
+ for(const [rotation,offset,width,height,shade] of [['rotateY(0deg)',d/2,w,h,1],['rotateY(180deg)',d/2,w,h,.9],['rotateY(90deg)',w/2,d,h,.83],['rotateY(-90deg)',w/2,d,h,.86],['rotateX(90deg)',h/2,w,d,1.1]]){
+ const face=document.createElement('div');face.className='face'+(door&&width===w&&height===h?' door':'');Object.assign(face.style,{width:width+'px',height:height+'px',left:-width/2+'px',top:-height/2+'px',transform:rotation+' translateZ('+offset+'px)',background:color,filter:'brightness('+shade+')'});block.append(face)}
+}
+box(0,3,0,250,6,176,'#e1ddd1');for(const z of [-65,65])for(let i=0;i<7;i++)for(let j=0;j<2;j++)box(-96+i*32,-24-j*49,z,31.5,49,31,'#c7b69d',true);
+box(0,-23,0,160,5,20,'#a78563');for(const x of [-61,61])box(x,-10,0,5,20,16,'#545651');
+function draw(){room.style.transform='scale('+Math.min(1.7,(innerWidth-42)/320)+') rotateX(-23deg) rotateY('+angle.value+'deg)'}angle.oninput=draw;onresize=draw;draw();
+</script></html>
