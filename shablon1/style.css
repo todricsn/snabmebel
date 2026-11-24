@@ -55,3 +55,6 @@ html.dialog-open{overflow-y:hidden;scrollbar-gutter:stable}.model-request-dialog
 .room-detail{position:absolute;right:0;bottom:0;width:35%;padding:6px;background:var(--paper);border-radius:12px;box-shadow:0 10px 26px #252a241a}
 .room-detail img{display:block;width:100%;height:auto;aspect-ratio:1.1;object-fit:cover;border-radius:7px}.room-detail figcaption{display:block;color:var(--ink);font-size:12px;line-height:1.3;padding:7px 4px}
 @media(max-width:560px){.furniture-stage{max-height:310px}.furniture-stage img{max-height:310px}.room-detail{width:38%}}
+
+.room-overview-frame{height:100%;overflow:hidden;border-radius:16px}.room-overview-frame .room-view{display:block;border-radius:0;transform:scale(1.015) rotate(-.4deg)}
+.room-detail-frame{overflow:hidden;border-radius:7px}.room-detail-frame img{border-radius:0;transform:scale(1.15) skewY(-7deg)}
