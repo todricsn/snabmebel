@@ -58,3 +58,5 @@ html.dialog-open{overflow-y:hidden;scrollbar-gutter:stable}.model-request-dialog
 
 .room-overview-frame{height:100%;overflow:hidden;border-radius:16px}.room-overview-frame .room-view{display:block;border-radius:0;transform:scale(1.015) rotate(-.4deg)}
 .room-detail-frame{overflow:hidden;border-radius:7px}.room-detail-frame img{border-radius:0;transform:scale(1.15) skewY(-7deg)}
+
+#clients{scroll-margin-top:145px}.client-signs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:16px;margin-top:28px}.client-sign{display:grid;justify-items:center;align-content:center;gap:20px;min-height:150px;border:1px solid var(--line);border-radius:14px}.client-sign img{width:auto;max-width:80%;height:38px;object-fit:contain}.client-sign span{font-size:14px;color:var(--muted)}
