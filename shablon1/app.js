@@ -140,7 +140,11 @@ const enquiry = document.querySelector('#enquiry');
 if (enquiry) {
   enquiry.setAttribute('aria-labelledby','enquiry-title');
   document.querySelectorAll('[data-popup]').forEach(button => button.addEventListener('click', () => {
-    enquiry.querySelector('h2').textContent = button.dataset.popup;
+    const callback = button.classList.contains('callback');
+    enquiry.classList.toggle('callback-dialog', callback);
+    enquiry.querySelector('.call-intro').hidden = !callback;
+    enquiry.querySelector('.call-agreement').hidden = !callback;
+    enquiry.querySelector('h2').textContent = callback ? 'Обратный звонок' : button.dataset.popup;
     enquiry.showModal();
   }));
   enquiry.querySelector('.dialog-close').onclick = () => enquiry.close();
